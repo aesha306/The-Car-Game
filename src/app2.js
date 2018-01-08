@@ -23,7 +23,7 @@ var HelloWorldLayer2 = cc.Layer.extend({
         carsprite = new cc.Sprite.create(res.Car);
         carsprite.setAnchorPoint(cc.p(0.5, 0.5));
         carsprite.setPosition(cc.p(size.width / 2, 90));
-        this.addChild(carsprite, 3);
+        this.addChild(carsprite, 0);
 
         scorelabel = new cc.LabelTTF("Score : 0", "Arial", 38);
         scorelabel.x = 100;
@@ -32,7 +32,7 @@ var HelloWorldLayer2 = cc.Layer.extend({
         this.addChild(scorelabel, 5);
 
         this.schedule(movesquares, 1.2);
-        this.schedule(movecircles, 3);
+        this.schedule(movecircles, 1.6);
 
 
         if(cc.sys.capabilities.hasOwnProperty('keyboard'))
@@ -76,7 +76,7 @@ var HelloWorldLayer2 = cc.Layer.extend({
 var movesquares = function()
 {
     var size = cc.winSize;
-    temps = temps+1;
+    //temps = temps+1;
     var randomsquare = Math.random();
     var squaresprite = new cc.Sprite.create(res.Square);
     squaresprite.setAnchorPoint(cc.p(0.5, 0.5));
@@ -97,6 +97,9 @@ var movesquares = function()
         var carboundary = carsprite.getBoundingBox();
         if (cc.rectIntersectsRect(carboundary, squareboundary))
         {
+            /*score++;
+            cc.log("Score is ", score);
+            scorelabel.setString("Score : "+score);*/
             //cc.director.pause();
             var scene2 = new HelloWorldScene3();
             cc.director.runScene(new cc.TransitionFade(1.5, scene2));;
@@ -112,7 +115,7 @@ var movecircles = function()
     var circlesprite= new cc.Sprite.create(res.Circle);
     circlesprite.setAnchorPoint(cc.p(0.5, 0.5));
     circlesprite.setPosition(cc.p(size.width-size.width*randomcircle, size.height+50));
-    this.addChild(circlesprite, 3); 
+    this.addChild(circlesprite, 0); 
     
     var sprite_action = cc.MoveTo.create(2.5, cc.p(size.width-size.width*randomcircle, -100));
     circlesprite.runAction(sprite_action);

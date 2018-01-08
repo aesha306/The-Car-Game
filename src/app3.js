@@ -39,7 +39,7 @@ var HelloWorldScene3 = cc.Scene.extend({
     onEnter:function () {
         this._super();
         //debugger;
-        if(!initialized3)
+        if(true)
         {
         	initialized3=true;
 
